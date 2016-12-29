@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "50005737452",
+    "firebase_url": "https://mivne2-b2d4f.firebaseio.com",
+    "project_id": "mivne2-b2d4f",
+    "storage_bucket": "mivne2-b2d4f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:50005737452:android:9979d92eaa8ef189",
+        "android_client_info": {
+          "package_name": "com.example.avinoam.boazmapot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "50005737452-d7lvpu65dnsehr8co9j42mba78nnqmo0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.avinoam.boazmapot",
+            "certificate_hash": "CFAA4DB2EF445A1A8B8196465FD6B876FB9DCBA9"
+          }
+        },
+        {
+          "client_id": "50005737452-15sta76gu09tn7npin777h4hqlclp4lv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjvnfTSzVcwvOTEElYoRP43Q0BU27LglE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "50005737452-15sta76gu09tn7npin777h4hqlclp4lv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

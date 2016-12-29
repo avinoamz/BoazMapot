@@ -1,0 +1,98 @@
+<!--<fragment xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--xmlns:map="http://schemas.android.com/apk/res-auto"-->
+<!--xmlns:tools="http://schemas.android.com/tools"-->
+<!--android:id="@+id/map"-->
+<!--android:name="com.google.android.gms.maps.SupportMapFragment"-->
+<!--android:layout_width="match_parent"-->
+<!--android:layout_height="match_parent"-->
+<!--tools:context="com.example.avinoam.mivne_tohna_2.MapsActivity" />-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MapsActivity" >
+
+    <fragment xmlns:map="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:scrollbars="vertical"
+        class="com.google.android.gms.maps.SupportMapFragment"/>
+
+    <TextView
+        android:id="@+id/textViewSpeed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_margin="@dimen/margin_large"
+        android:cursorVisible="false"
+        android:text="@string/speed" />
+
+    <RadioGroup
+        android:id="@+id/radio_group_list_selector"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:layout_gravity="bottom"
+        android:background="#00000000"
+        android:padding="4dp" >
+
+        <Button
+            android:id="@+id/SaveGps"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Save GPS"
+            android:gravity="center_horizontal|center_vertical"
+            android:onClick="SaveGPSLocation"
+            />
+        <View
+            android:id="@+id/VerticalLine"
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="#aaa" />
+        <Button
+            android:id="@+id/loadQr"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Load QR"
+            android:gravity="center_horizontal|center_vertical"
+            android:onClick="LoadQR"
+            />
+        <View
+            android:id="@+id/VerticalLine3"
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="#aaa" />
+        <Button
+            android:id="@+id/saveQR"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Save QR"
+            android:gravity="center_horizontal|center_vertical"
+            android:onClick="SaveQR"
+            />
+        <View
+            android:id="@+id/VerticalLine2"
+            android:layout_width="1dip"
+            android:layout_height="match_parent"
+            android:background="#aaa" />
+        <Button
+            android:id="@+id/loadBLE"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="BLE"
+            android:gravity="center_horizontal|center_vertical"
+            android:onClick="LoadBLE"
+            />
+
+    </RadioGroup>
+
+    <EditText android:id="@+id/showText"
+        style="?android:attr/textViewStyle"
+        android:background="@null"
+        android:inputType="textWebEmailAddress"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+
+</FrameLayout>
