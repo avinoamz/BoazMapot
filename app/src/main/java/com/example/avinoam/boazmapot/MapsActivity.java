@@ -19,7 +19,11 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
@@ -53,9 +57,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addApi(LocationServices.API)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -238,7 +249,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             if (location != null) {
                 ref.child(name).removeValue();
 
-                LatLng point = new LatLng(location.getLatitude(), location.getLongitude());
                 ref.child(name).child("Latitude").setValue(location.getLatitude());
                 ref.child(name).child("Longitude").setValue(location.getLongitude());
                 ref.child(name).child("Nickname").setValue(name);
@@ -283,19 +293,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             try {
                 IntentResult scanningResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
                 if (scanningResult != null) {
-                    List<String> data = scanningResult.getLocation();
-                    if (data == null)
-                        return;
-                    Double lat = Double.parseDouble(data.get(0));
-                    Double lon = Double.parseDouble(data.get(1));
-                    String madeBy = data.get(2);
-                    LatLng point = new LatLng(lat, lon);
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(point, 15));
-                    Toast.makeText(this, "Created By " + madeBy, Toast.LENGTH_SHORT).show();
+                    try {
+                        List<String> data = scanningResult.getLocation();
+                        if (data == null)
+                            return;
+                        Double lat = Double.parseDouble(data.get(0));
+                        Double lon = Double.parseDouble(data.get(1));
+                        String madeBy = data.get(2);
+                        LatLng point = new LatLng(lat, lon);
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(point, 15));
+                        Toast.makeText(this, "Created By " + madeBy, Toast.LENGTH_SHORT).show();
+                    } catch (Exception e) {
+                        Toast.makeText(this, "QR invalid", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
-                    Toast toast = Toast.makeText(getApplicationContext(),
-                            "No scan data received!", Toast.LENGTH_SHORT);
-                    toast.show();
+//                    Toast toast = Toast.makeText(getApplicationContext(),
+//                            "No scan data received!", Toast.LENGTH_SHORT);
+//                    toast.show();
                 }
             } catch (Exception e) {
             }
@@ -337,4 +351,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(a);
     }
+
 }

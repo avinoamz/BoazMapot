@@ -25,7 +25,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener  {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final int RC_SIGN_IN = 9001;
 
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
 
 
         startListener();
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mAuth.addAuthStateListener(mAuthListener);
     }
 
-    private void startListener(){
+    private void startListener() {
 
         findViewById(R.id.sign_in_button).setOnClickListener(this);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
+
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -102,8 +103,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         isActivated = true;
                         launchLobby();
                     }
-                }
-                else {
+                } else {
                     // User is signed out
                 }
             }
@@ -115,8 +115,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-
-    private void launchLobby(){
+    private void launchLobby() {
         Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
     }
@@ -148,9 +147,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             } else {
                 // Google Sign In failed, update UI appropriately
             }
-        }
-        else
-            Toast.makeText(this,"fail login",Toast.LENGTH_SHORT).show();
+        } else
+            Toast.makeText(this, "fail login", Toast.LENGTH_SHORT).show();
     }
 
     private void startFirebase(GoogleSignInAccount acct) {

@@ -20,12 +20,13 @@
         android:scrollbars="vertical"
         class="com.google.android.gms.maps.SupportMapFragment"/>
 
+
     <TextView
         android:id="@+id/textViewSpeed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
-        android:layout_margin="@dimen/margin_large"
+        android:layout_margin="@dimen/margin_large2"
         android:cursorVisible="false"
         android:text="@string/speed" />
 

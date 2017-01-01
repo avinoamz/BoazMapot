@@ -53,7 +53,7 @@ public class BLEActivity extends AppCompatActivity implements View.OnClickListen
         }
 
         mBTStateUpdateReceiver = new BroadcastReceiver_BTState(getApplicationContext());
-        mBTLeScanner = new Scanner_BTLE(this, 7500, -75);
+        mBTLeScanner = new Scanner_BTLE(this, 7500, -100);
         database = FirebaseDatabase.getInstance();
         mBTDevicesHashMap = new HashMap<>();
         mBTDevicesArrayList = new ArrayList<>();
